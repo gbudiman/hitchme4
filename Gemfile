@@ -35,11 +35,13 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'haml-rails'
 gem 'devise'
+gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'rspec-rails'
 gem 'bootstrap-sass'
 gem 'polylines'
 gem 'awesome_print'
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
