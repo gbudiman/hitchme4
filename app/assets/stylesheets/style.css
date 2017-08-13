@@ -1,0 +1,7 @@
+.clickable {
+  cursor: pointer;
+}
+
+#add-event-interface > .form-control, #event-date-holder > .input-group {
+  margin-bottom: 4px;
+}

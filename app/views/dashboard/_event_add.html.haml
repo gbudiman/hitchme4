@@ -1,0 +1,18 @@
+%div{class: 'modal fade', id: 'modal-event-add'}
+  %div{class: 'modal-dialog'}
+    %div{class: 'modal-content'}
+      %div{class: 'modal-header'}
+        %button{type: 'button', class: 'close', 'data-dismiss': 'modal'} &times;
+        %h4{class: 'modal-title'} Add Event
+      %div{class: 'modal-body'}
+        %input{type: 'text', class: 'form-control', placeholder: 'Enter some cool name'}
+        %input{type: 'text', class: 'form-control', placeholder: 'Then add some address...'}
+        %div{class: 'form-group'}
+          %div{class: 'input-group date', id: 'datetimepicker-0'}
+            %input{type: 'text', class: 'form-control', placeholder: 'Then add some date...'}
+              %span{class: 'input-group-addon'}
+                %span{class: 'glyphicon glyphicon-calendar'}
+      %div{class: 'modal-footer'}
+        %button{type: 'button', class: 'btn btn-primary pull-right'} Save
+        %button{type: 'button', class: 'btn btn-default pull-right', 'data-dismiss': 'close', style: 'margin-right: 8px'} Cancel
+        

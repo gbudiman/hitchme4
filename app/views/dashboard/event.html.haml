@@ -1,0 +1,32 @@
+/= render 'event_add'
+%div{class: 'container'}
+  %div{class: 'row', id: 'dashboard-event-manager'}
+    %div{class: 'col-xs-12 dashboard-vdiv', id: 'db-event-map'}
+      
+    %div{class: 'col-xs-12 dashboard-vdiv', id: 'db-event-list'}
+      %div{class: 'panel panel-primary'}
+        %div{class: 'panel-heading'} 
+          Events I Organized
+        %div{class: 'panel-body'}
+          %button{type: 'button', class: 'btn btn-primary', id: 'expand-add-event'} 
+            %span{class: 'glyphicon glyphicon-add'}
+            Add Event
+          %div{id: 'add-event-interface'}
+            %input{type: 'text', class: 'form-control', placeholder: 'Enter some cool name', id: 'event-name'}
+            %input{type: 'text', class: 'form-control', placeholder: 'Then add some address...', id: 'event-address'}
+            %div{class: 'form-group', id: 'event-date-holder'}
+
+            %button{type: 'button', class: 'btn btn-primary', id: 'add-event-date'}
+              %span{class: 'glyphicon glyphicon-plus'}
+              Add more occurrence
+
+            %hr
+            %button{type: 'button', class: 'btn btn-primary pull-right', id: 'add-event-save'} Save
+            %button{type: 'button', class: 'btn btn-default pull-right', style: 'margin-right: 8px', id: 'add-event-cancel'} Cancel
+        %ul{class: 'list-group', id: 'db-event-list-body'}
+
+= javascript_include_tag 'layout'
+
+:javascript
+  layout.set_dashboard_event();
+  event.attach();

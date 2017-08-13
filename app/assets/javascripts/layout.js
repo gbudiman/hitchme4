@@ -3,12 +3,25 @@ var layout = function() {
     return $(window).height() - $('nav').outerHeight();
   }
 
-  var set_dashboard = function() {
-    var _set_dashboard = function() {
+  var set_dashboard_event = function() {
+    var _set_dashboard_event = function() {
+      var height = get_workable_height();
+
+      $('#dashboard-event-manager').find('div.dashboard-vdiv').each(function() {
+        $(this).css('height', (height / 2) + 'px')
+      })
+    }
+
+    $(window).resize(_set_dashboard_event);
+    _set_dashboard_event();
+  }
+
+  var set_dashboard_zero = function() {
+    var _set_dashboard_zero = function() {
       var height = get_workable_height();
 
       $('#dashboard-step-0').find('div.dashboard-vdiv').each(function() {
-        $(this).css('height', (height / 3 - 8) + 'px');
+        $(this).css('height', (height / 3) + 'px');
 
         $(this).find('button')
           .css('width', '67%')
@@ -17,11 +30,12 @@ var layout = function() {
           .css('margin-top', (height / 12) + 'px')
       })
     }
-    $(window).resize(_set_dashboard);
+    $(window).resize(_set_dashboard_zero);
     _set_dashboard();
   }
 
   return {
-    set_dashboard: set_dashboard
+    set_dashboard_zero: set_dashboard_zero,
+    set_dashboard_event: set_dashboard_event
   }
 }()

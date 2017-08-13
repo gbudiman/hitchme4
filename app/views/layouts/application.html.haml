@@ -7,13 +7,13 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %nav{class: 'navbar navbar-inverse'}
-      %div{class: 'container-fluid'}
-        %div{class: 'navbar-header col-xs-4'}
+    %nav{class: 'navbar navbar-inverse', style: 'margin: 0'}
+      %div{class: 'container-fluid', style: 'padding: 0px 4px'}
+        %div{class: 'navbar-header col-xs-4', style: 'padding-left: 4px'}
           %a{class: 'navbar-brand', href: '#'} HitchMe
 
         - if user_signed_in?
-          %div{class: 'navbar-header col-xs-8 pull-right'}
+          %div{class: 'navbar-header col-xs-8 pull-right', style: 'margin-right: 0px; padding-right: 4px'}
             %a{class: 'navbar-brand dropdown-toggle pull-right', 'data-toggle': 'dropdown', href: '#'}
               = current_user[:name]
               %span{class: 'caret'}
@@ -21,6 +21,8 @@
               %li
                 = link_to 'Logout', destroy_user_session_path, method: :delete
         - else
-          %div{class: 'navbar-header col-xs-8 pull-right'}
+          %div{class: 'navbar-header col-xs-8 pull-right', style: 'padding-right: 0px'}
             %a{class: 'navbar-brand pull-right', href: '/users/auth/facebook'} Login/Sign Up
     = yield
+
+  = stylesheet_link_tag 'style'

@@ -43,6 +43,8 @@ gem 'bootstrap-sass'
 gem 'polylines'
 gem 'awesome_print'
 gem 'figaro'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

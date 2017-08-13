@@ -13,4 +13,15 @@ class Event < ApplicationRecord
                          address: '14600 Baron Dr, Eastvale, CA',
                          time_start: '2017 Aug 18 20:00'
   end
+
+  def self.load_multi user_id:, h:
+    ActiveRecord::Base.transaction do
+      h[:dates].each do |date|
+        Event.create! user_id: user_id,
+                      name: h[:name],
+                      address: h[:address],
+                      time_start: Time.at(date.to_i)
+      end
+    end
+  end
 end

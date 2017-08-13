@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'splash#index'
   get      '/dashboard/index',     to: 'dashboard#index'
+  get      '/dashboard/event',     to: 'dashboard#event'
+  get      '/events/fetch',        to: 'events#fetch'
+  post     '/events/post',         to: 'events#post'
+  post     '/events/delete',       to: 'events#delete'
 
   devise_scope :user do
     delete 'sign_out',             to: 'devise/sessions#destroy', as: :destroy_user_session
