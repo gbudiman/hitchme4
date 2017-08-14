@@ -1,10 +1,12 @@
 /= render 'event_add'
 %div{class: 'container'}
   %div{class: 'row', id: 'dashboard-event-manager'}
+    
     %div{class: 'col-xs-12 dashboard-vdiv', id: 'db-event-map'}
       
     %div{class: 'col-xs-12 dashboard-vdiv', id: 'db-event-list'}
       %div{class: 'panel panel-primary'}
+
         %div{class: 'panel-heading'} 
           Events I Organized
         %div{class: 'panel-body'}
@@ -25,7 +27,12 @@
             %button{type: 'button', class: 'btn btn-default pull-right', style: 'margin-right: 8px', id: 'add-event-cancel'} Cancel
         %ul{class: 'list-group', id: 'db-event-list-body'}
 
+= stylesheet_link_tag 'bootstrap-editable'
 = javascript_include_tag 'layout'
+= javascript_include_tag 'cache'
+= javascript_include_tag 'mapping'
+= javascript_include_tag 'bootstrap-editable.min'
+= javascript_include_tag 'event'
 
 :javascript
   layout.set_dashboard_event();

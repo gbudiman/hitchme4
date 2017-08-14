@@ -2,6 +2,18 @@
   cursor: pointer;
 }
 
+.list-event-name {
+  font-weight: bold;
+}
+
+.list-event-address {
+  font-style: italic;
+}
+
+.list-event-start-date {
+  border-bottom: dashed 1px #0088cc;
+}
+
 #add-event-interface > .form-control, #event-date-holder > .input-group {
   margin-bottom: 4px;
 }

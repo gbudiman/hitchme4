@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get      '/events/fetch',        to: 'events#fetch'
   post     '/events/post',         to: 'events#post'
   post     '/events/delete',       to: 'events#delete'
+  post     '/events/edit',         to: 'events#edit'
 
   devise_scope :user do
     delete 'sign_out',             to: 'devise/sessions#destroy', as: :destroy_user_session
