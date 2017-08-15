@@ -20,4 +20,11 @@ class EventsController < ApplicationController
     Event.find(params[:pk].to_i).update_attributes!(p_name => p_value)
     render json: { success: true }
   end
+
+  def search
+    render json: Event
+                   .where('name ilike :n', n: "#{params[:q]}%")
+                   .where('time_start > :t', t: Time.now())
+                   .order(time_start: :asc).as_json
+  end
 end

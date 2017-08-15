@@ -16,6 +16,19 @@ var layout = function() {
     _set_dashboard_event();
   }
 
+  var set_dashboard_offer = function() {
+    var _set_dashboard_offer = function() {
+      var height = get_workable_height();
+
+      $('#dashboard-offer-manager').find('div.dashboard-vdiv').each(function() {
+        $(this).css('height', (height / 2) + 'px')
+      })
+    }
+
+    $(window).resize(_set_dashboard_offer);
+    _set_dashboard_offer();
+  }
+
   var set_dashboard_zero = function() {
     var _set_dashboard_zero = function() {
       var height = get_workable_height();
@@ -36,6 +49,7 @@ var layout = function() {
 
   return {
     set_dashboard_zero: set_dashboard_zero,
-    set_dashboard_event: set_dashboard_event
+    set_dashboard_event: set_dashboard_event,
+    set_dashboard_offer: set_dashboard_offer
   }
 }()

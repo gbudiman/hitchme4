@@ -10,8 +10,16 @@
   font-style: italic;
 }
 
-.list-event-start-date {
+.list-event-start-date-editable {
   border-bottom: dashed 1px #0088cc;
+}
+
+.list-event-start-date {
+
+}
+
+.time-start-muted {
+  opacity: 0.7
 }
 
 #add-event-interface > .form-control, #event-date-holder > .input-group {

@@ -1,0 +1,34 @@
+%div{class: 'container'}
+  %div{class: 'row', id: 'dashboard-offer-manager'}
+    %div{class: 'col-xs-12 dashboard-vdiv', id: 'db-offer-map'}
+    %div{class: 'col-xs-12 dashboard-vdiv', id: 'db-offer-interface'}
+      %input{type: 'text', class: 'form-control', placeholder: 'Type event name...', id: 'event-finder'}
+      
+
+      %div{class: 'panel panel-primary', id: 'offer-details', style: 'display: none'}
+        /%div{class: 'panel-heading'} Trip To Event
+        %div{class: 'panel-body'}
+          %span{id: 'event-address'}
+          %br
+          %span{id: 'event-start-time'}
+          %br
+
+          Trip To Event
+          %input{type: 'text', class: 'form-control', placeholder: 'Where are you driving from?', id: 'address-to-event'}
+          %input{type: 'text', class: 'form-control', placeholder: 'And when?', id: 'time-to-event'}
+
+          Trip Back Home
+          %input{type: 'text', class: 'form-control', placeholder: 'Where is home?', id: 'address-to-home'}
+          %input{type: 'text', class: 'form-control', placeholder: 'When will you leave?', id: 'time-to-event'}
+
+= stylesheet_link_tag 'typeaheadjs'
+= javascript_include_tag 'layout'
+= javascript_include_tag 'handlebars'
+= javascript_include_tag 'typeahead.bundle.min'
+= javascript_include_tag 'cache'
+= javascript_include_tag 'mapping'
+= javascript_include_tag 'event_query'
+
+:javascript
+  layout.set_dashboard_offer();
+  event_query.attach($('#event-finder'))

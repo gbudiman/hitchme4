@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   root to: 'splash#index'
   get      '/dashboard/index',     to: 'dashboard#index'
   get      '/dashboard/event',     to: 'dashboard#event'
+  get      '/dashboard/offer',     to: 'dashboard#offer'
   get      '/events/fetch',        to: 'events#fetch'
   post     '/events/post',         to: 'events#post'
   post     '/events/delete',       to: 'events#delete'
   post     '/events/edit',         to: 'events#edit'
+  get      '/events/search/:q',    to: 'events#search'
 
   devise_scope :user do
     delete 'sign_out',             to: 'devise/sessions#destroy', as: :destroy_user_session

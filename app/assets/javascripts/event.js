@@ -1,5 +1,4 @@
 var event = function() {
-  var gmaps_script = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB0HMkhjSZwLxLMtOzokyyxQueN6G7fGK0&libraries=places';
   var date_id_counter = 0;
   var address_autocomplete = null;
   var editable_autocomplete = null;
@@ -48,7 +47,7 @@ var event = function() {
     }
 
     var attach_autocomplete_event = function() {
-      mapping.add_autocomplete_listener(address_autocomplete);
+      mapping.add_autocomplete_listener(address_autocomplete, { clear_all: true});
 
       $('#event-address').focus(function() {
         $(this).select();
@@ -63,7 +62,8 @@ var event = function() {
     }
 
     var attach_map = function() {
-      $.getScript(gmaps_script).done(function() {
+      //$.getScript(gmaps_script).done(function() {
+      mapping.get_script().done(function() {
         map = mapping.attach(document.getElementById('db-event-map'))
         cache.attach(map);
         address_autocomplete = mapping.attach_autocomplete(document.getElementById('event-address'))
@@ -243,7 +243,7 @@ var event = function() {
         })
       })
 
-      body.find('span.list-event-start-date').each(function() {
+      body.find('span.list-event-start-date-editable').each(function() {
         //make_editable_template($(this), 'time-start', 'date')
         $(this).on('click', function() {
           make_editable_datetime($(this)) 
@@ -267,7 +267,7 @@ var event = function() {
           +    '<br />'
           +    '<span class="list-event-address" data-id=' + d.id + '>' + d.address + '</span>'
           +    '<br />'
-          +    '<span class="list-event-start-date" data-id=' + d.id + '>'
+          +    '<span class="list-event-start-date-editable" data-id=' + d.id + '>'
           +      moment(d.time_start).format('llll')
           +    '</span>'
           +  '</li>'

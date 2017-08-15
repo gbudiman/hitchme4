@@ -6,4 +6,7 @@ class DashboardController < ApplicationController
 
   def event
   end
+
+  def offer
+  end
 end
