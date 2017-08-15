@@ -4,6 +4,12 @@ var cache = function() {
   var routes = {};
   var map = null;
   var marker_names = {};
+  var route_address = {};
+  var named_address = {};
+
+  var stringify_route = function(h) {
+    return named_address[h.origin] + ' -> ' + named_address[h.destination];
+  }
 
   var attach = function(_map) {
     map = _map;
@@ -23,6 +29,8 @@ var cache = function() {
         if (set_bound) mapping.set_bound(get_all_markers());
         if (marker_name != undefined) {
           marker_names[marker_name] = markers[addr];
+          named_address[marker_name] = addr;
+
         }
 
         set_marker_color(markers[addr], marker_color);
@@ -63,19 +71,61 @@ var cache = function() {
                 position: results[0].geometry.location
               })
 
-
-
               resolve(_do_rest());
             }
           }) 
         }
+      } else {
+        resolve(_do_rest());
       } 
     })
     
   }
 
-  var route = function(a, b) {
+  var route = function(h) {
+    var render_route = function(res) {
+      return new Promise(function(resolve, reject) {
+        if (routes[h.name] == undefined) {
+          var dir_serv = new google.maps.DirectionsRenderer({
+            markerOptions: {
+              visible: false
+            }, 
+            polylineOptions: {
+              strokeColor: h.color,
+              strokeOpacity: 0.7
+            }
+          });
 
+          routes[h.name] = dir_serv;
+        }
+
+        routes[h.name].setDirections(res);
+        resolve(routes[h.name]);
+      })
+
+    }
+
+    return new Promise(function(resolve, reject) {
+      if (h.delete_named) {
+        if (routes[h.name] != undefined) {
+          routes[h.name].setMap(null);
+        }
+      }
+
+      var cached_route = route_address[stringify_route(h)];
+      if (cached_route == undefined) {
+        console.log('cache miss ' + stringify_route(h));
+        mapping.compute_route(marker_names[h.origin].position, 
+                              marker_names[h.destination].position,
+                              []).then(function(res) {
+          route_address[stringify_route(h)] = res
+          resolve(render_route(res));
+        })
+      } else {
+        console.log('cache hit ' + stringify_route(h));
+        resolve(render_route(route_address[stringify_route(h)]));
+      }
+    });
   }
 
   var clear_marker = function(x) {
@@ -94,6 +144,10 @@ var cache = function() {
     return Object.values(markers);
   }
 
+  var get_marker_by_name = function(x) {
+    return marker_names[x];
+  }
+
   var set_marker_color = function(obj, color) {
     if (color == undefined) return;
     obj.setIcon('http://maps.google.com/mapfiles/ms/icons/' + color + '-dot.png')
@@ -103,6 +157,8 @@ var cache = function() {
     console.log(addresses);
     console.log(markers);
     console.log(marker_names);
+    console.log(routes);
+    console.log(named_address);
   }
 
   return {
@@ -111,6 +167,7 @@ var cache = function() {
     route: route,
     clear_all_markers: clear_all_markers,
     get_all_markers: get_all_markers,
+    get_marker_by_name: get_marker_by_name,
     dump: dump
   }
 }()

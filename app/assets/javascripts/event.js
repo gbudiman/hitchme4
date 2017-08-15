@@ -47,7 +47,12 @@ var event = function() {
     }
 
     var attach_autocomplete_event = function() {
-      mapping.add_autocomplete_listener(address_autocomplete, { clear_all: true});
+      mapping.add_autocomplete_listener(address_autocomplete, { 
+        clear_all: true,
+        jq_object: $('#event-address'),
+        marker_name: 'event',
+        focus_one: true
+      });
 
       $('#event-address').focus(function() {
         $(this).select();
@@ -56,7 +61,7 @@ var event = function() {
 
     var attach_cancel_button = function() {
       $('#add-event-cancel').on('click', function() {
-        swith_to_add_event(false);
+        switch_to_add_event(false);
         mapping.clear_all_markers();
       })
     }
@@ -66,7 +71,7 @@ var event = function() {
       mapping.get_script().done(function() {
         map = mapping.attach(document.getElementById('db-event-map'))
         cache.attach(map);
-        address_autocomplete = mapping.attach_autocomplete(document.getElementById('event-address'))
+        mapping.attach_autocomplete(document.getElementById('event-address'))
         attach_autocomplete_event();
       })
     }
