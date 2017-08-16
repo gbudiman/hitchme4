@@ -29,6 +29,19 @@ var layout = function() {
     _set_dashboard_offer();
   }
 
+  var set_dashboard_request = function() {
+    var _set_dashbaord_request = function() {
+      var height = get_workable_height();
+
+      $('#dashboard-request-manager').find('div.dashboard-vdiv').each(function() {
+        $(this).css('height', (height / 2) + 'px')
+      })
+    }
+
+    $(window).resize(_set_dashbaord_request);
+    _set_dashbaord_request();
+  }
+
   var set_dashboard_zero = function() {
     var _set_dashboard_zero = function() {
       var height = get_workable_height();
@@ -50,6 +63,7 @@ var layout = function() {
   return {
     set_dashboard_zero: set_dashboard_zero,
     set_dashboard_event: set_dashboard_event,
-    set_dashboard_offer: set_dashboard_offer
+    set_dashboard_offer: set_dashboard_offer,
+    set_dashboard_request: set_dashboard_request
   }
 }()

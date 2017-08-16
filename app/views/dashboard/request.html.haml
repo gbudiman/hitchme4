@@ -1,0 +1,17 @@
+%div{class: 'container'}
+  %div{class: 'row', id: 'dashboard-require-manager'}
+    %div{class: 'col-xs-12 dashboard-vdiv', id: 'db-request-map'}
+    %div{class: 'col-xs-12 dashboard-vdiv', id: 'db-request-interface'}
+      %input{type: 'text', class: 'form-control', placeholder: 'Type event name...', id: 'event-finder'}
+
+= stylesheet_link_tag 'typeaheadjs'
+= javascript_include_tag 'layout'
+= javascript_include_tag 'handlebars'
+= javascript_include_tag 'typeahead.bundle.min'
+= javascript_include_tag 'cache'
+= javascript_include_tag 'mapping'
+= javascript_include_tag 'event_query'
+
+:javascript
+  layout.set_dashboard_request();
+  event_query.attach($('#event-finder'))

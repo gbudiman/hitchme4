@@ -56,7 +56,9 @@
 = javascript_include_tag 'cache'
 = javascript_include_tag 'mapping'
 = javascript_include_tag 'event_query'
+= javascript_include_tag 'offer'
 
 :javascript
   layout.set_dashboard_offer();
   event_query.attach($('#event-finder'))
+  offer.attach('db-offer-map')

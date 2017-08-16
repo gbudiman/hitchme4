@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get      '/dashboard/index',     to: 'dashboard#index'
   get      '/dashboard/event',     to: 'dashboard#event'
   get      '/dashboard/offer',     to: 'dashboard#offer'
+  get      '/dashboard/request',   to: 'dashboard#request'
   get      '/events/fetch',        to: 'events#fetch'
   post     '/events/post',         to: 'events#post'
   post     '/events/delete',       to: 'events#delete'
