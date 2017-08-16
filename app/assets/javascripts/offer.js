@@ -121,8 +121,8 @@ var offer = function() {
       mapping.get_script().done(function() {
         map = mapping.attach(document.getElementById(map_id))
         cache.attach(map);
-        to_event_autocomplete = mapping.attach_autocomplete(document.getElementById('address-to-event'))
-        to_home_autocomplete = mapping.attach_autocomplete(document.getElementById('address-to-home'))
+        mapping.attach_autocomplete(document.getElementById('address-to-event'))
+        mapping.attach_autocomplete(document.getElementById('address-to-home'))
         attach_autocomplete_event();
       })
     }

@@ -14,7 +14,7 @@ Rails.application.config.assets.paths << Rails.root.join('vendor', 'images')
 # folder are already added.
 Rails.application.config.assets.precompile += %w( layout.js style.css
                                                   mapping.js
-                                                  event.js event_query.js offer.js
+                                                  event.js event_query.js offer.js request.js
                                                   cache.js
                                                   bootstrap-editable.min.js bootstrap-editable.css
                                                   typeahead.bundle.min.js typeaheadjs.css

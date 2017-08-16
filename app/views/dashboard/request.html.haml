@@ -4,6 +4,29 @@
     %div{class: 'col-xs-12 dashboard-vdiv', id: 'db-request-interface'}
       %input{type: 'text', class: 'form-control', placeholder: 'Type event name...', id: 'event-finder'}
 
+      %div{class: 'panel panel-primary', id: 'request-details'}
+        %div{class: 'panel-body'}
+          %span{id: 'event-address'}
+          %br
+          %span{id: 'event-start-time'}
+          %br
+
+          %div{id: 'pickup-current', class: 'trip-current'}
+          %div{id: 'pickup-none', class: 'trip-none'}
+            Pickup To Event: Not scheduled.
+          %div{id: 'pickup-editor', class: 'trip-editor'}
+            Pickup To Event
+            %input{type: 'text', class: 'form-control', placeholder: 'Pickup location', id: 'address-pickup'}
+            %input{type: 'text', class: 'form-control', placeholder: 'Pickup time', id: 'time-pickup'}
+
+          %div{id: 'dropoff-current', class: 'trip-current'}
+          %div{id: 'dropoff-none', class: 'trip-current'}
+            Dropoff From Event: Not scheduled.
+          %div{id: 'dropoff-editor', class: 'trip-editor'}
+            Dropoff From Event
+            %input{type: 'text', class: 'form-control', placeholder: 'Dropoff location', id: 'address-dropoff'}
+            %input{type: 'text', class: 'form-control', placeholder: 'Dropoff time', id: 'time-dropoff'}
+
 = stylesheet_link_tag 'typeaheadjs'
 = javascript_include_tag 'layout'
 = javascript_include_tag 'handlebars'
@@ -11,7 +34,9 @@
 = javascript_include_tag 'cache'
 = javascript_include_tag 'mapping'
 = javascript_include_tag 'event_query'
+= javascript_include_tag 'request'
 
 :javascript
   layout.set_dashboard_request();
-  event_query.attach($('#event-finder'))
+  event_query.attach($('#event-finder'));
+  request.attach('db-request-map');
