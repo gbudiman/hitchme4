@@ -140,12 +140,20 @@ var cache = function() {
     })
   }
 
+  var delete_marker_by_name = function(x) {
+    delete marker_names[x];
+  }
+
   var get_all_markers = function() {
     return Object.values(markers);
   }
 
   var get_marker_by_name = function(x) {
     return marker_names[x];
+  }
+
+  var get_route_by_name = function(x) {
+    return routes[x];
   }
 
   var set_marker_color = function(obj, color) {
@@ -166,8 +174,10 @@ var cache = function() {
     address: address,
     route: route,
     clear_all_markers: clear_all_markers,
+    delete_marker_by_name: delete_marker_by_name,
     get_all_markers: get_all_markers,
     get_marker_by_name: get_marker_by_name,
+    get_route_by_name: get_route_by_name,
     dump: dump
   }
 }()

@@ -86,6 +86,14 @@ var mapping = function() {
     })
   }
 
+  var delete_route = function(x) {
+    var route = cache.get_route_by_name(x);
+
+    if (route != undefined) {
+      route.setMap(null);  
+    }
+  }
+
   var draw_route = function(h) {
     cache.route(h).then(function(res) {
       res.setMap(map);
@@ -94,18 +102,28 @@ var mapping = function() {
 
   var force_fill_autocomplete = function(h) {
     return new Promise(function(resolve, reject) {
-      var marker = cache.address({
-        address: h.address,
-        clear_all: false,
-        marker_name: h.marker_name,
-        marker_color: h.marker_color,
-        delete_named: true
-      }).then(function(marker) {
-        marker.setMap(map);
-        resolve(true); 
-      })
-    })
+      if (h.address.trim().length == 0) {
+        var marker = cache.get_marker_by_name(h.marker_name);
 
+        if (marker != undefined) {
+          marker.setMap(null);  
+          cache.delete_marker_by_name(h.marker_name);
+        }
+        
+        resolve(true);
+      } else {
+        var marker = cache.address({
+          address: h.address,
+          clear_all: false,
+          marker_name: h.marker_name,
+          marker_color: h.marker_color,
+          delete_named: true
+        }).then(function(marker) {
+          marker.setMap(map);
+          resolve(true); 
+        })
+      }
+    })
   }
 
   var get_script = function() {
@@ -130,7 +148,9 @@ var mapping = function() {
     var bounds = new google.maps.LatLngBounds();
     $.each(marker_names, function(i, name) {
       var marker = cache.get_marker_by_name(name);
-      bounds.extend(marker.position);
+      if (marker != undefined) {
+        bounds.extend(marker.position);  
+      }
     })
 
     map.fitBounds(bounds);
@@ -142,6 +162,7 @@ var mapping = function() {
     attach_autocomplete: attach_autocomplete,
     clear_all_markers: clear_all_markers,
     compute_route: compute_route,
+    delete_route: delete_route,
     draw_route: draw_route,
     force_fill_autocomplete: force_fill_autocomplete,
     get_script: get_script,

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   post     '/events/delete',       to: 'events#delete'
   post     '/events/edit',         to: 'events#edit'
   get      '/events/search/:q',    to: 'events#search'
+  post     '/offers/post',         to: 'offers#post'
+  get      '/offers/current',      to: 'offers#current'
+  post     '/offers/delete',       to: 'offers#delete'
 
   devise_scope :user do
     delete 'sign_out',             to: 'devise/sessions#destroy', as: :destroy_user_session

@@ -13,13 +13,41 @@
           %span{id: 'event-start-time'}
           %br
 
-          Trip To Event
-          %input{type: 'text', class: 'form-control', placeholder: 'Where are you driving from?', id: 'address-to-event'}
-          %input{type: 'text', class: 'form-control', placeholder: 'And when?', id: 'time-to-event'}
+          %div{id: 'to-event-current', class: 'trip-current'}
+          %div{id: 'to-event-none', class: 'trip-none'} 
+            Trip To Event: Not scheduled.
+            %a{href: '#', class: 'pull-right', 'data-schedule-context': 'to-event'} Schedule
+          %div{id: 'to-event-editor', class: 'trip-editor'}
+            Trip To Event
+            %span{class: 'pull-right glyphicon glyphicon-ok', style: 'display:none', id: 'to-event-ok'}
+            %div{class: 'pull-right input-group form-inline col-xs-4'}
+              %span{class: 'input-group-addon'}
+                Space
 
-          Trip Back Home
-          %input{type: 'text', class: 'form-control', placeholder: 'Where is home?', id: 'address-to-home'}
-          %input{type: 'text', class: 'form-control', placeholder: 'When will you leave?', id: 'time-to-home'}
+              %input{type: 'number', class: 'form-control', id: 'passenger-space-to-event', min: 0, max: 99, value: 1}
+            %a{class: '', href: '#', id: 'delete-trip-to-event', style: 'display:none'} Delete
+            %input{type: 'text', class: 'form-control', placeholder: 'Where are you driving from?', id: 'address-to-event'}
+            %input{type: 'text', class: 'form-control', placeholder: 'And when?', id: 'time-to-event'}
+
+          %div{id: 'to-home-current', class: 'trip-current'}
+          %div{id: 'to-home-none', class: 'trip-none'} 
+            Trip Back Home: Not scheduled.
+            %a{href: '#', class: 'pull-right', 'data-schedule-context': 'to-home'} Schedule
+          %div{id: 'to-home-editor', class: 'trip-editor'}
+            Trip Back Home
+            %span{class: 'pull-right glyphicon glyphicon-ok', style: 'display:none', id: 'to-home-ok'}
+            %div{class: 'pull-right input-group form-inline col-xs-4'}
+              %span{class: 'input-group-addon'}
+                Space
+              %input{type: 'number', class: 'form-control', id: 'passenger-space-to-home', min: 0, max: 99, value: 1}
+            %a{class: '', href: '#', id: 'delete-trip-to-home', style: 'display:none'} Delete
+            %input{type: 'text', class: 'form-control', placeholder: 'Where is home?', id: 'address-to-home'}
+            %input{type: 'text', class: 'form-control', placeholder: 'When will you leave?', id: 'time-to-home'}
+
+          %div{id: 'editor-interface'}
+            
+            %button{type: 'button', class: 'btn btn-primary pull-right', id: 'save-trip'} Save Trip
+            %button{type: 'button', class: 'btn btn-default pull-right', id: 'cancel-edit', style: 'margin-right: 8px'} Cancel Edit
 
 = stylesheet_link_tag 'typeaheadjs'
 = javascript_include_tag 'layout'
